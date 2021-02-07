@@ -1,7 +1,8 @@
 package org.mybatisOu.mysql.generation;
 
-import org.mybatisOu.mysql.bind.*;
+import com.mybatisOu.mysql.bind.*;
 import org.mybatisOu.mysql.exception.SqlInfoException;
+import org.mybatisOu.mysql.bind.*;
 
 import java.lang.reflect.Field;
 import java.util.Arrays;
@@ -103,7 +104,7 @@ public class ReflectionModelInfo {
     }
 
     /**
-     * join 连接 mysql
+     * join 连接 com.mybatisOu.mysql
      * 例：{@link @Join("user_info b on user.ID = b.userId") } join user_info b on user.ID = b.userId
      * {@link @Join(value = "user_info b on user.ID = b.userId",)}
      *

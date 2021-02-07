@@ -7,7 +7,7 @@ package org.mybatisOu.mysql.bind;
 public class JoinTable {
 
     /**
-     * join mysql information
+     * join com.mybatisOu.mysql information
      */
     private String join;
 

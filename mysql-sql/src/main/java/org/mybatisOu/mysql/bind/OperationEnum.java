@@ -1,7 +1,7 @@
 package org.mybatisOu.mysql.bind;
 
 /**
- * mysql 条件关系
+ * com.mybatisOu.mysql 条件关系
  *
  * @author ou
  */

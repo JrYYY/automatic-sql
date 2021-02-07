@@ -3,7 +3,7 @@ package org.mybatisOu.mysql.bind;
 import java.lang.annotation.*;
 
 /**
- * join mysql
+ * join com.mybatisOu.mysql
  *
  * @author OU
  */

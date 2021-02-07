@@ -6,6 +6,7 @@ import org.mybatisOu.mysql.bind.Condition;
 import org.mybatisOu.mysql.bind.JoinTable;
 import org.mybatisOu.mysql.bind.OR;
 import org.mybatisOu.mysql.exception.SqlInfoException;
+
 import java.lang.reflect.Field;
 
 /**
@@ -18,7 +19,7 @@ public class GenerateSqlStringUtil {
     private static ReflectionModelInfo modelInfo;
 
     /**
-     * mysql 构建器
+     * com.mybatisOu.mysql 构建器
      */
     private SQL sql;
     /**
@@ -157,7 +158,7 @@ public class GenerateSqlStringUtil {
                     sql.WHERE(sqlSb);
                 }
             } catch (IllegalAccessException e) {
-//                log.error("#mysql error:" + sqlSb, e);
+//                log.error("#com.mybatisOu.mysql error:" + sqlSb, e);
                 throw e;
             }
         }
