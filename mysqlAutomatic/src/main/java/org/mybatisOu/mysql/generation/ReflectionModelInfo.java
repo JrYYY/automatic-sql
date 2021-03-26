@@ -1,12 +1,12 @@
 package org.mybatisOu.mysql.generation;
 
-import org.mybatisOu.mysql.exception.SqlInfoException;
 import org.mybatisOu.mysql.bind.*;
+import org.mybatisOu.mysql.exception.SqlInfoException;
 
 import java.lang.reflect.Field;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.ArrayList;
 
 /**
  * 反射模型类信息
@@ -15,28 +15,15 @@ import java.util.ArrayList;
  */
 public class ReflectionModelInfo {
 
-    /**
-     * 数据模型
-     */
-    private Class model;
-
-    /**
-     * 数据
-     */
-    private Object data;
 
 
-    public ReflectionModelInfo(Class model, Object data) {
-        this.model = model;
-        this.data = data;
-    }
 
     /**
      * 列
      *
      * @return 返回查询列
      */
-    public List<String> getColumnNames() {
+    public  List<String> getColumnNames(Class model) {
         Field[] columns = model.getDeclaredFields();
         List<String> columnNames = getAllQueryColumn(columns);
         if (columnNames.size() == 0) {
@@ -51,7 +38,7 @@ public class ReflectionModelInfo {
      * @param columns 所有列
      * @return 获取字段状态
      */
-    private List<String> getAllQueryColumn(Field[] columns) {
+    private  List<String> getAllQueryColumn(Field[] columns) {
         List<String> columnNames = new ArrayList<>();
         for (Field column : columns) {
             if (column.isAnnotationPresent(Column.class)) {
@@ -73,7 +60,7 @@ public class ReflectionModelInfo {
      * @param columns 行
      * @return 查询列名
      */
-    private List<String> getAllColumn(Field[] columns) {
+    private  List<String> getAllColumn(Field[] columns) {
         List<String> columnNames = new ArrayList<>();
         for (Field column : columns) {
             columnNames.add(column.getName());
@@ -87,7 +74,7 @@ public class ReflectionModelInfo {
      * @return 表名称
      * @throws SqlInfoException {@link SqlInfoException} 反写sql异常信息
      */
-    public String getTableName() throws SqlInfoException {
+    public  String getTableName(Class model) throws SqlInfoException {
         if (model.isAnnotationPresent(Table.class)) {
             Table table = (Table) model.getAnnotation(Table.class);
             if (table.value().isEmpty()) {
@@ -110,8 +97,8 @@ public class ReflectionModelInfo {
      * @return {@link List<JoinTable>} 连接表信息
      * @throws SqlInfoException {@link SqlInfoException} 反写sql异常信息
      */
-    public List<JoinTable> getJoinTables() throws SqlInfoException {
-        List<JoinTable> joinTables = new ArrayList<JoinTable>();
+    public  List<JoinTable> getJoinTables(Class model) throws SqlInfoException {
+        List<JoinTable> joinTables = new ArrayList<>();
         if (model.isAnnotationPresent(Join.class)) {
             Join join = (Join) model.getAnnotation(Join.class);
             String[] tableNames = join.value();
@@ -147,7 +134,7 @@ public class ReflectionModelInfo {
      * @param column 列
      * @return 判单条件
      */
-    public String splicingDefaultSql(Field column) {
+    public  String splicingDefaultSql(Field column) {
         Condition condition = column.getAnnotation(Condition.class);
         OperationEnum operation = condition.operation();
         return condition.value() + " " + operation.getSql();
@@ -164,7 +151,7 @@ public class ReflectionModelInfo {
      * @param column 列
      * @return 判单条件
      */
-    public String splicingSingleRowsSql(Field column) {
+    public  String splicingSingleRowsSql(Field column) {
         Condition condition = column.getAnnotation(Condition.class);
         OperationEnum operation = condition.operation();
         String sqlSb = condition.value() + " " + operation.getSql();
@@ -195,7 +182,7 @@ public class ReflectionModelInfo {
      * @param column 列
      * @return 判单条件
      */
-    public String splicingMultipleRowsSql(Field column) throws IllegalAccessException, SqlInfoException {
+    public  String splicingMultipleRowsSql(Field column,Object data) throws IllegalAccessException, SqlInfoException {
         Condition condition = column.getAnnotation(Condition.class);
         OperationEnum operation = condition.operation();
         String sqlSb = condition.value() + " " + operation.getSql();
@@ -217,7 +204,7 @@ public class ReflectionModelInfo {
      *
      * @return 分组列名称
      */
-    public List<String> getGroupColumnName() {
+    public List<String> getGroupColumnName(Class model) {
         List<String> groupColumns = new ArrayList<>();
         Field[] columns = model.getDeclaredFields();
         if (model.isAnnotationPresent(Group.class)) {
@@ -242,7 +229,7 @@ public class ReflectionModelInfo {
      *
      * @return
      */
-    public List<String> getOrderColumnName() {
+    public  List<String> getOrderColumnName(Class model) {
         List<String> orderColumns = new ArrayList<>();
         Field[] columns = model.getDeclaredFields();
         if (model.isAnnotationPresent(Order.class)) {
@@ -272,5 +259,12 @@ public class ReflectionModelInfo {
             }
         }
         return orderColumns;
+    }
+
+    public static ReflectionModelInfo now(){
+        return new ReflectionModelInfo();
+    }
+
+    private ReflectionModelInfo(){
     }
 }

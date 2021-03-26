@@ -19,6 +19,8 @@
     <modules>
         <module>mysql-sql</module>
         <module>test</module>
+        <module>automatic-test</module>
+        <module>mysqlAutomatic</module>
     </modules>
 
     <dependencyManagement>

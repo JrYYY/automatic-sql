@@ -26,6 +26,9 @@ public class GenerateSqlStringUtil {
      * 数据模型
      */
     private Class model;
+
+    private Class value;
+
     /**
      * 数据
      */
@@ -153,7 +156,7 @@ public class GenerateSqlStringUtil {
         } else {
             try {
                 column.setAccessible(true);
-                Object columnDate = column.get(data);
+                Object columnDate = column.get( data);
                 if (columnDate != null) {
                     sql.WHERE(sqlSb);
                 }
