@@ -2,19 +2,19 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
       <profile name="Maven default annotation processors profile" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="automatic-test" />
-        <module name="mysql-sql" />
-        <module name="mysqlAutomatic" />
-        <module name="test" />
+        <module name="automaticSql" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="automatic-sql" target="1.8" />
       <module name="automatic-test" target="1.8" />
+      <module name="automaticSql" target="1.8" />
       <module name="mysql" target="1.8" />
       <module name="mysql-sql" target="1.8" />
       <module name="mysqlAutomatic" target="1.8" />

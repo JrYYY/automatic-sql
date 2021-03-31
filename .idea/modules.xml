@@ -2,11 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/automatic-sql.iml" filepath="$PROJECT_DIR$/automatic-sql.iml" />
       <module fileurl="file://$PROJECT_DIR$/automatic-test/automatic-test.iml" filepath="$PROJECT_DIR$/automatic-test/automatic-test.iml" />
-      <module fileurl="file://$PROJECT_DIR$/mysql-sql/mysql-sql.iml" filepath="$PROJECT_DIR$/mysql-sql/mysql-sql.iml" />
-      <module fileurl="file://$PROJECT_DIR$/mysqlAutomatic/mysqlAutomatic.iml" filepath="$PROJECT_DIR$/mysqlAutomatic/mysqlAutomatic.iml" />
-      <module fileurl="file://$PROJECT_DIR$/test/test.iml" filepath="$PROJECT_DIR$/test/test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/automaticSql/automaticSql.iml" filepath="$PROJECT_DIR$/automaticSql/automaticSql.iml" />
     </modules>
   </component>
 </project>
