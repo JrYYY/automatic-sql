@@ -1,11 +1,10 @@
 package org.jryyy.autoumatic.util;
 
-import org.jryyy.autoumatic.bind.*;
+import org.jryyy.autoumatic.annotations.*;
 import org.jryyy.autoumatic.constant.OperationEnum;
 import org.jryyy.autoumatic.entity.InsertColumn;
 import org.jryyy.autoumatic.entity.JoinTable;
 import org.jryyy.autoumatic.exception.SqlInfoException;
-import org.jryyy.autoumatic.sql.Resolve;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -183,16 +182,15 @@ public abstract class ReflectModelUtil extends Resolve {
      *
      * @return
      */
-    public List<String> getOrderColumnName(Class model) {
+    public List<String> getModelOrderColumnName(Class model) {
         List<String> orderColumns = new ArrayList<>();
-        if (model.isAnnotationPresent(Order.class)) {
-            Order order = (Order) model.getAnnotation(Order.class);
-            List<String> orderInfo = Arrays.asList(order.value());
-            if (order.isDesc()) {
-                orderInfo.forEach(a -> a += " desc");
-            }
-            orderColumns.addAll(orderInfo);
-        }
+
+        return orderColumns;
+    }
+
+    public List<String> getValueOrderColumnName(Class value){
+        List<String> orderColumns = new ArrayList<>();
+
         return orderColumns;
     }
 

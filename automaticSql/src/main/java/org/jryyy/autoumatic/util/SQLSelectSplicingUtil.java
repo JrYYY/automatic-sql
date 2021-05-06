@@ -5,6 +5,7 @@ import org.jryyy.autoumatic.exception.SqlInfoException;
 import org.jryyy.autoumatic.sql.SQL;
 
 import java.lang.reflect.Field;
+import java.util.List;
 
 public class SQLSelectSplicingUtil {
 
@@ -12,7 +13,12 @@ public class SQLSelectSplicingUtil {
     private static SQLSelectSplicingUtil now(){ return new SQLSelectSplicingUtil(); }
     private SQLSelectSplicingUtil(){}
 
-    private ReflectModelUtil reflectModelUtil = new ReflectUtil();
+    private ReflectModelUtil reflectModelUtil = new ReflectModelUtil() {
+        @Override
+        public String getColumnName(Field column) {
+            return super.getColumnName(column);
+        }
+    };
 
 
     public <V> SQL start(Class model, V value, SQL sql) throws SqlInfoException {
@@ -44,7 +50,6 @@ public class SQLSelectSplicingUtil {
         Field[] columns = model.getDeclaredFields();
         for(Field column : columns){
             JoinTable joinTable = reflectModelUtil.getJoinTable(column);
-
         }
         return this;
     }

@@ -10,11 +10,11 @@ public class ParseSql {
 
     private SQLSelectSplicingUtil selectUtil = SQLSelectSplicingUtil.now;
 
-    public <V> String findDataByInfo(Class model, V value) throws SqlInfoException {
+    public <T extends BaseEntity,V> String findDataByInfo(Class<T> model, V value) throws SqlInfoException {
         return selectUtil.start(model,value,new SQL()).toString();
     }
 
-    public <T extends  BaseEntity> String findDataById(Class<T> model,Long id) throws SqlInfoException{
+    public <T extends  BaseEntity> String findDataById(Class<T> model,Long id) throws SqlInfoException {
         return selectUtil.start(model,new SQL()).toString();
     }
 
